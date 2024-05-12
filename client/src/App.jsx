@@ -1,0 +1,36 @@
+import React from 'react'
+import { BrowserRouter as Router,Routes,Route } from 'react-router-dom'
+import Home from './pages/Home'
+import About from './pages/About'
+import Profile from './pages/Profile.jsx'
+import SignUp from './pages/SignUp.jsx'
+import Header from './components/Header'
+import PrivateRoute from './components/PrivateRoute.jsx'
+import CreateListing from './pages/CreateListing.jsx'
+import SignIn from './pages/SignIn.jsx'
+import UpdateListing from './pages/UpdateListing.jsx'
+import Listing from './pages/Listing.jsx'
+import Search from './pages/Search.jsx'
+
+function App() {
+  return (
+    <Router>
+      <Header/>
+      <Routes>
+        <Route path='/' element={<Home/>}/>
+        <Route path='/about' element={<About/>}/>
+        <Route path='/search' element={<Search/>}/>
+        <Route element={<PrivateRoute/>  }>
+          <Route path='/profile' element={<Profile/>}/>
+          <Route path='/create-listing' element={<CreateListing/>}/>
+          <Route path='/update-listing/:listingId' element={<UpdateListing/>}/>
+        </Route>
+        <Route path='/sign-in' element={<SignIn/>}/>
+        <Route path='/sign-up' element={<SignUp/>}/>
+        <Route path='/listing/:listingId' element={<Listing/>}/>
+      </Routes>
+    </Router>
+  )
+}
+
+export default App
